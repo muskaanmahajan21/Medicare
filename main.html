@@ -16,19 +16,20 @@
              </div>
 
         <ul class="navlinks">
-            <a href="#">Home</a>
-            <a href="Account.html">Account</a>
-            <a href="#">SignUp/SignIn</a>
-            <a href="#">Article</a>
+            <li><a href="#">Home</a></li>
+            <li><a href="Account.html">Account</a></li>
+            <li><a href="#">SignUp/SignIn</a></li>
+            <li>Article</li>
             <div class="dropdown">
-                <button class="dropbtn"><i class="fa-solid fa-caret-down"></i></button>
-                <div class="dropdown-content">
+                <div class="dropdown-toggle" onclick="toggleDropdown()">
+                <span class="arrow" id="arrow"><i class="fa-solid fa-caret-down"></i></span>
+                <div>
+                <div class="dropdown-content" id="dropdowncontent">
                     <a href="Blogs.html">Blogs</a>
                     <a href="Images.html">Images</a>
                     <a href="Videos.html">Videos</a>
                   </div>
             </div>
-            
         </ul>
 
         <div class ="search">
@@ -40,22 +41,31 @@
 
     </div>
 
-    <div class="slideshow-container">
-        <div class="myslide fade">
+     <div class="slideshow-container">
+        <div class="mySlides fade">
             <div class="numberimage">1/3</div>
-                <img src="pic1.webp" alt="Image 1" width="100%" >
+                <img src="pic1.webp" alt="Image 1">
         </div>
-        <div class="myslide fade">
+        <div class="mySlides fade">
             <div class="numberimage">2/3</div>
-                <img src="pic1.webp" alt="Image 1" width="100%" >
+                <img src="linkdin.png" alt="Image 1">
         </div>
-        <div class="myslide fade">
+        <div class="mySlides fade">
             <div class="numberimage">3/3</div>
-                <img src="pic1.webp" alt="Image 1" width="100%" >
+                <img src="pic1.webp" alt="Image 1">
         </div>
-    
-    </div>
 
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    
+    <!--Dots-->
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    
     
     
 
