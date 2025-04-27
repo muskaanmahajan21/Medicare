@@ -8,7 +8,7 @@
     <title>MediCare</title>
 </head>
 <body>
-
+    
     <div class="Topbar">
             <!-- <h3>MediCare</h3> -->
              <div class="logo">
@@ -16,16 +16,16 @@
              </div>
 
         <ul class="navlinks">
-            <li><a href="#">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="Account.html">Account</a></li>
             <li><a href="#">SignUp/SignIn</a></li>
-            <li>Article</li>
+            <li>Resources</li>
             <div class="dropdown">
                 <div class="dropdown-toggle" onclick="toggleDropdown()">
                 <span class="arrow" id="arrow"><i class="fa-solid fa-caret-down"></i></span>
                 <div>
                 <div class="dropdown-content" id="dropdowncontent">
-                    <a href="Blogs.html">Blogs</a>
+                    <a href="Article.html">Article</a>
                     <a href="Images.html">Images</a>
                     <a href="Videos.html">Videos</a>
                   </div>
@@ -48,11 +48,11 @@
         </div>
         <div class="mySlides fade">
             <div class="numberimage">2/3</div>
-                <img src="linkdin.png" alt="Image 1">
+                <img src="img1.jpeg" alt="Image 1">
         </div>
         <div class="mySlides fade">
             <div class="numberimage">3/3</div>
-                <img src="pic1.webp" alt="Image 1">
+                <img src="img2.jpeg" alt="Image 1">
         </div>
 
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -66,18 +66,48 @@
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
     
-    
+    <!--Chat bot-->
+    <div class="chat-icon" id="chat-icon">💬</div>
+
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            <h4>Chat with us</h4>
+            <span id="close-btn">&times;</span>
+        </div>
+        <div class="chat-body" id="chat-body">
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button id="send-btn">➤</button>
+        </div>
+    </div>
+
     
 
+
+
+    <!--Footer-->>
     <footer>
         <div class="footer">
             <div class="info">
                 <p>Medical Health Care</p>
-                <p>All rights reserved &copy; 2023</p>
+                <p>All rights reserved &copy; 2025 <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a></p>
+                <p><a href="About-Us.html">About-Us</a></p>
             </div>
+            
+            <div class="contact-info">
+                <p><strong>Address:</strong> Shop No #123 Sector-20c , Chandigarh</p>
+                <p><strong>Phone:</strong> +91  9656372834</p>
+                <p><strong>Email:</strong> contact@medicalclinic.com</p>
+                <p><strong>Hours:</strong> Mon - Fri: 8am - 6pm</p>
+                <p><a href="contact.html">Contact</a></p>
+            </div>
+           
+
         <div class="h3">    
             <h3>Follow Us </h3>
         </div>
+
 
         <div class="social">
             <img src="instagram.png" alt="Logo" height="60px" weight="40px">
@@ -93,7 +123,12 @@
             <p>Twitter</p>
             <p>LinkedIn</p>
         </div>
+        
+
+        
     </div>
+
+   
     </footer>
 
     <script src="main.js">

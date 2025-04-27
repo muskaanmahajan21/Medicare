@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+.Topbar{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center items vertically */
+    background-color: deepskyblue;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.5rem;
+}
+.Topbar li{
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 1.5rem;
+}
+.Topbar li a{
+  color: white;
+  text-decoration: none;
+}
+.Topbar li:hover {
+  color: lightblue;
+}
