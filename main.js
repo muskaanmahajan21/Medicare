@@ -32,22 +32,26 @@ const sendBtn = document.getElementById('send-btn');
 const userInput = document.getElementById('user-input');
 const chatBody = document.getElementById('chat-body');
 
-// Open chat window
 chatIcon.addEventListener('click', () => {
     chatWindow.style.display = 'flex';
     chatIcon.style.display = 'none';
 });
 
-// Close chat window
 closeBtn.addEventListener('click', () => {
     chatWindow.style.display = 'none';
     chatIcon.style.display = 'block';
 });
 
-// Send message
+const clearBtn = document.getElementById('clear');
+clearBtn.addEventListener('click', () => {
+    chatBody.innerHTML = ''; 
+    userInput.value = ''; 
+    userInput.focus();
+});
+
 sendBtn.addEventListener('click', sendMessage);
 
-function sendMessage() {
+async function sendMessage() {
     const message = userInput.value.trim();
     if (message) {
         const userMessage = document.createElement('div');
@@ -58,14 +62,34 @@ function sendMessage() {
         chatBody.appendChild(userMessage);
         userInput.value = '';
 
-        setTimeout(() => {
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/medical-query?query=${encodeURIComponent(message)}`);
+            const data = await response.json();
+
             const botMessage = document.createElement('div');
-            botMessage.textContent = "Thanks for your message!";
+            if (data.advice) {
+                botMessage.textContent = data.advice;
+                botMessage.style.textAlign = 'left';
+                botMessage.style.margin = '5px 0';
+                botMessage.style.color = '#7f8c8d';
+            } else {
+                botMessage.textContent = data.message || "Sorry, I couldn't understand your query.";
+                botMessage.style.textAlign = 'left';
+                botMessage.style.margin = '5px 0';
+                botMessage.style.color = '#7f8c8d';
+            }
+
+            chatBody.appendChild(botMessage);
+            chatBody.scrollTop = chatBody.scrollHeight; 
+        } catch (error) {
+            console.error("Error with API request:", error);
+            const botMessage = document.createElement('div');
+            botMessage.textContent = "Sorry, there was an error processing your request. Please try again later.";
             botMessage.style.textAlign = 'left';
             botMessage.style.margin = '5px 0';
             botMessage.style.color = '#7f8c8d';
             chatBody.appendChild(botMessage);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }, 500);
+            chatBody.scrollTop = chatBody.scrollHeight; 
+        }
     }
 }

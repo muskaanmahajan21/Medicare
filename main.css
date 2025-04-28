@@ -249,6 +249,12 @@ body{
   justify-content: space-between;
   align-items: center;
 }
+.chat-header button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 
 .chat-header h4 {
   margin: 0;

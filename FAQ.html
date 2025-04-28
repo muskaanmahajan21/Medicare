@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="FAQ.css">
+    <title>FAQ Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script> <!-- Font Awesome Icons -->
+</head>
+<body>
+    <div class="faq-container">
+        <h1>Frequently Asked Questions</h1>
+    
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>How can I book an appointment?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>You can book an appointment online via our website, call us at 9656372834, or visit our clinic directly.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Do you offer online consultations?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>No! We offer a contact option to book appointments and a chatbot for quick consultation discussions.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>What insurance plans do you accept?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>We accept most major insurance providers. Please call our front desk to confirm your plan coverage.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Can I access my medical records online?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>No, not possible now , our developer team works on that in future.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>What should I bring to my first appointment?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Please bring your ID proof, insurance card (if applicable), any past medical records, and a list of medications.</p>
+            </div>
+        </div>
+    
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Do you provide emergency services?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>We handle minor emergencies. For life-threatening emergencies, please dial 108 or visit the nearest hospital immediately.</p>
+            </div>
+        </div>
+
+        <!-- NEW FAQs added below -->
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>How early should I arrive for my appointment?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>We recommend arriving at least 15 minutes early to complete any necessary paperwork.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Do you offer vaccination services?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, we offer flu shots, COVID-19 vaccines, and routine immunizations for children and adults.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Can I consult a doctor virtually?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>No! you have to visit to the hospital.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>When will I receive my lab test results?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Lab results are usually available within 24 to 48 hours. You can collect from the hospital.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>What safety measures are you taking against COVID-19?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>We follow all WHO guidelines, including mandatory masks, frequent sanitization, and temperature checks for all visitors.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Can I get a second opinion at your clinic?</h3>
+                <span class="toggle-icon"><i class="fa-solid fa-chevron-down"></i></span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes, we encourage second opinions. Our experienced specialists will review your reports and provide detailed advice.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
