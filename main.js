@@ -8,19 +8,40 @@ function toggleDropdown() {
 
 //Slide Bar
 let slideIndex = 0;
+let slides = document.getElementsByClassName("mySlides");
+let dots = document.getElementsByClassName("dot");
+let slideTimer;
+
+function showSlides(n = null) {
+  if (n !== null) {
+    slideIndex = n - 1;
+  }
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+    dots[i].classList.remove("active");
+  }
+
+  slideIndex++;
+  if (slideIndex > slides.length) { slideIndex = 1; }
+
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].classList.add("active");
+
+  slideTimer = setTimeout(() => showSlides(), 2000);
+}
+
+function plusSlides(n) {
+  clearTimeout(slideTimer);
+  showSlides(slideIndex + n);
+}
+function currentSlide(n) {
+  clearTimeout(slideTimer);
+  showSlides(n);
+}
+
 showSlides();
 
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  setTimeout(showSlides, 2000); 
-}
 
 
 // chatbot.js
