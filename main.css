@@ -89,6 +89,7 @@ main {
 .Topbar.logo img{
  display: inline-block;
  vertical-align: middle;
+ 
 }
 
 
@@ -136,7 +137,6 @@ main {
 
 
 /* Slide Bar*/
-/* Full-width Slideshow Container */
 .slideshow-container {
   width: 100vw;
   position: relative;
@@ -331,6 +331,13 @@ main {
   text-align: center;
   padding: 50px 20px;
   background-color: #f7f7f7;
+}
+.test-image {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* ensures it's square */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
 }
 
 .tests-container {
