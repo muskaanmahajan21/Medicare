@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare Services</title>
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="main.css">
     <title>MediCare</title>
@@ -26,59 +28,125 @@
                 <div>
                 <div class="dropdown-content" id="dropdowncontent">
                     <a href="Article.html">Article</a>
+                    <a href="Blog.html">Blog</a>
                     <a href="Images.html">Images</a>
-                    <a href="Videos.html">Videos</a>
+                    
                   </div>
             </div>
         </ul>
 
         <div class ="search">
             <span>
-                <input type="text" placeholder="Search.." >
+                <input type="text" placeholder="Looking for" >
             </span>
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-
     </div>
 
-     <div class="slideshow-container">
-        <div class="mySlides fade">
-            <div class="numberimage">1/3</div>
-                <img src="pic1.webp" alt="Image 1">
-        </div>
-        <div class="mySlides fade">
-            <div class="numberimage">2/3</div>
-                <img src="img1.jpeg" alt="Image 1">
-        </div>
-        <div class="mySlides fade">
-            <div class="numberimage">3/3</div>
-                <img src="img2.jpeg" alt="Image 1">
-        </div>
 
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <!-- Medicare Banner -->
+<div class="banner">
+    <div class="text-content">
+        <h1>We are a reliable partner</h1>
+        <p>Providing quality healthcare with compassion and expertise.</p>
+        <div class="buttons">
+            <button class="btn">Find a Doctor</button>
+        </div>
     </div>
-    
-    <!--Dots-->
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
+    <div class="doctor-image">
+        <img src="main-1.webp" alt="Doctor">
     </div>
+</div>
+
+<div class="medicare-banner">
+    <div class="image-section">
+        <img src="doctor.jpg" alt="Doctor and child in hospital">
+    </div>
+    <div class="text-section">
+        <h1>Welcome to Medicare</h1>
+        <p>At Medicare, we believe in compassionate and accessible healthcare for all. Our dedicated professionals are here to provide expert care, ensuring comfort and support in every medical journey.
+
+            From routine check-ups to specialized treatments, we prioritize your health and well-being.</p>
+        <button class="btn">View More</button>
+    </div>
+</div>
+
+<div class="about-section">
+    <div class="text-content">
+        <h1>About Us</h1>
+        <h2>We Have Experienced Doctors</h2>
+        <p>At Medicare, we blend expertise with compassion to ensure quality healthcare for every individual. Our dedicated professionals prioritize your well-being, offering personalized treatment and reliable medical support.
+
+            With a commitment to accessibility and care, we strive to make healthcare simple, clear, and effective—just the way you need it.</p>
+        <button class="btn">Learn More</button>
+    </div>
+    <div class="image-content">
+        <img src="pic3.jpg" alt="Doctor">
+    </div>
+</div>
+
+
+
+    <div class="container">
+        <div class="column">
+            <h2>Professional staff</h2>
+            <p>Our team is skilled and experienced, and they work hard to give you the best service.</p>
+            <button>READ MORE</button>
+        </div>
+        <div class="column">
+            <h2>Affordable prices</h2>
+            <p>We offer reasonable prices, so you get great service without spending too much.</p>
+            <button>VIEW PRICELIST</button>
+        </div>
+        <div class="column">
+            <h2>Insurance partners</h2>
+            <p>We work with many insurance companies to give you good coverage and support.</p>
+            <button>READ MORE</button>
+        </div>
+        <div class="column">
+            <h2>Consult our doctors</h2>
+            <p>Select the doctor you prefer and book a visit.</p>
+            <button>CHOOSE A DOCTOR</button>
+        </div>
+    </div>
+
     
     <!--LAb Test-->
     <section class="lab-tests">
-        <h2>Services</h2>
+        <h2>Medicare services</h2>
+        <p>We provide the best services for your health</p>
         <div class="tests-container">
             <div class="test-item">
-                <img src="blood.jpeg" alt="Blood Test" class="test-image" />
-                <h3>Blood Test (CBC)</h3>
-                <p>Complete blood count to detect infections and anemia.</p>
+                <img src="dentist1.jpg" alt="Blood Test" class="Dentist">
+                <h3>Dentist</h3>
+                <p>Keep your smile bright and healthy.</p>
             </div>
             <div class="test-item">
-                <img src="sugar.jpeg"alt="Blood Test" class="test-image" />
-                <h3>Sugar Test</h3>
-                <p>Check blood glucose levels for diabetes monitoring.</p>
+                <img src="chiropractor1.jpg" alt="Chiropractor">
+                <h3>Chiropractor</h3>
+                <p>Relief for neck, back, and joint pain.</p>
+            </div>
+            <div class="test-item">
+                <img src="CARDIOLOGIST1.jpg" alt="Cardiologist">
+                <h3>Cardiolchiropractor1ogist</h3>
+                <p>Keeping your heart strong and healthy.</p>
+            </div>
+            <div class="test-item">
+                <img src="healthcare.png" alt="Emergency Help">
+                <h3>Emergency Help</h3>
+                <p>We provide expert healthcare services to keep you healthy and comfortable. Our specialists are here to support your well-being with personalized care.</p>
+            </div>
+            
+            <div class="test-item">
+                <img src="plasticsurgery.jpg" alt="Plastic surgery">
+                <h3>Plastic surgery</h3>
+                <p>Enhancing beauty and restoring confidence with expert plastic surgery services.</p>
+            </div>
+
+            <div class="test-item">
+                <img src="nursing.jpg" alt="nursing home">
+                <h3>Nursing Home</h3>
+                <p>Provide 24/7 medical care in a safe, comfortable environment. Our personalized support ensures every resident feels at home.</p>
             </div>
             <div class="test-item">
                 <img src="xray.jpeg"alt="Blood Test" class="test-image" />
