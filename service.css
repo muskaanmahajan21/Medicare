@@ -1,0 +1,149 @@
+/* Global Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef7ff;
+    color: #333;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    font-size: 1.2em;
+}
+
+/* Navigation */
+nav {
+    background-color: #0056b3;
+    padding: 10px;
+}
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.breadcrumb li {
+    margin: 0 10px;
+    color: white;
+}
+
+.breadcrumb li a {
+    text-decoration: none;
+    color: #ffcc00;
+}
+
+/* Grid Layout */
+.facility-grid, .service-grid, .excellence-grid, .diagnostic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Section Design */
+.facility-section, .medical-services, .centre-of-excellence, .diagnostic-services {
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0px 0px 15px rgba(0, 123, 255, 0.2);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 80%;
+}
+
+/* Card Styling */
+.facility-item, .service-item, .excellence-item, .diagnostic-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.facility-item:hover, .service-item:hover, .excellence-item:hover, .diagnostic-item:hover {
+    transform: scale(1.05);
+}
+
+/* Images */
+.facility-item img, .service-item img, .excellence-item img, .diagnostic-item img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+/* Section Titles */
+h2 {
+    color: #007bff;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+/*Box*/
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    background: white;
+    padding: 20px;
+  }
+  
+  .card {
+    background: deepskyblue;
+    color: white;
+    padding: 20px;
+    width: 23%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    margin-top: 0;
+  }
+  
+  .card p {
+    font-size: 14px;
+  }
+  
+  .card button, .card select {
+    margin-top: 10px;
+    background: white;
+    color: #00b4a9;
+    border: 1px solid white;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .card button a{
+    color: #00b4a9;
+  }
+  .card select {
+    width: 100%;
+  }
+  /* Button */
+.button {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #007bff;;
+    background: linear-gradient(to bottom, #dbeafe, white); 
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.button:hover {
+    background: linear-gradient(to bottom, #b0d4f1, #dbeafe);
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(88, 73, 203, 0.3);
+}
