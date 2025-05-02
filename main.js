@@ -136,7 +136,7 @@ function toggleReadMore() {
         btnText.textContent = "Read Less";
         moreText.style.display = "inline";
     }
-}s
+}
 
 //search bar
 document.getElementById("search-icon").addEventListener("click", function () {
@@ -163,24 +163,5 @@ document.getElementById("search-icon").addEventListener("click", function () {
       alert("No matching service found.");
   }
 });
-
-// Toggle menu visibility
-function toggleMenu() {
-  const menu = document.querySelector(".menu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-
-// Login function
-function Signin() {
-  alert("Logging in...");
-  // Redirect or handle authentication logic here
-}
-
-// Logout function
-function Signout() {
-  alert("Logging out...");
-  // Redirect or handle logout logic here
-}
-
 
 // chatbot.js

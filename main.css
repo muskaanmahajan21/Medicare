@@ -594,38 +594,3 @@ footer {
 }
 
 
-/* Styles for the menu */
-.menu-container {
-  position: relative;
-  display: inline-block;
-}
-
-.dots {
-  font-size: 24px;
-  cursor: pointer;
-  padding: 10px;
-  background: lightgray;
-  border-radius: 50%;
-}
-
-.menu {
-  display: none; /* Hidden by default */
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background: white;
-  list-style: none;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  border-radius: 6px;
-}
-
-.menu li {
-  padding: 8px 15px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.menu li:hover {
-  background: #f0f0f0;
-}
