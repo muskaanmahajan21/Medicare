@@ -62,16 +62,12 @@ function toggleDropdown() {
 
   //doctor
   const doctorInfo = {
-    "Dr. Devi Prasad Shetty": "Cardiac Surgeon – Founder of Narayana Health. Studied at Kasturba Medical College.",
-    "Dr. Naresh Trehan": "Cardiovascular and Cardiothoracic Surgeon – Founder of Medanta. Studied at King George’s Medical College.",
-    "Dr. Randeep Guleria": "Pulmonologist – Former Director of AIIMS Delhi. Specialized in respiratory medicine.",
-    "Dr. A. Velumani": "Pathologist – Founder of Thyrocare. Holds a PhD in Thyroid Biochemistry.",
-    "Dr. Sudhansu Bhattacharyya": "Cardiothoracic Surgeon – Known for innovations in heart surgery. Alumni of AIIMS.",
-    "Dr. B. M. Hegde": "Cardiologist and Medical Scientist – Former VC of Manipal University. Studied at Stanley Medical College.",
-    "Dr. Ashok Seth": "Interventional Cardiologist – Chairman of Fortis Escorts Heart Institute. Trained at AIIMS and abroad.",
-    "Dr. Gagandeep Kang": "Virologist – Expert in enteric infections and vaccines. Studied at Christian Medical College, Vellore.",
-    "Dr. Lalit Kant": "Epidemiologist – Former Head of Epidemiology at ICMR. Specialized in infectious diseases.",
-    "Dr. N. K. Venkataramana": "Neurosurgeon – Founder of Advanced Neurosciences Institute. Studied at Bangalore Medical College."
+    "Dr. Saga Lundqvist": "Dental & Heart Disease – National University os Seattle(2005), Masters in internal Medicine(2007).",
+    "Dr. Danni Fisher": "Obstetrics & Gynaecology – Founder of Medanta. Studied at King George’s Medical College.",
+    "Dr. Danny Nguyen": "Dental & Outpatient Surgery – Former Director of AIIMS Delhi. Specialized in respiratory medicine.",
+    "Dr. Micheal Don": "Obstetrics & Gynaecology and Gynecological & Heart Diseases – Founder of Thyrocare. Holds a PhD in Thyroid Biochemistry.",
+    "Dr. Anna Reeves": "Cancer, Dental & Elder Clinic – Known for innovations in heart surgery. Alumni of AIIMS.",
+    "Dr. Michelle Liv": "Cancer & Children Clinic & Pediatric – Former VC of Manipal University. Studied at Stanley Medical College.",
   };
 
   const selectElement = document.getElementById("doctor-select");
@@ -152,4 +148,3 @@ function toggleReadMore() {
 
 //search bar
 
-// chatbot.js

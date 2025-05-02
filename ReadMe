@@ -1,0 +1,39 @@
+🏥 Medicare Services Website
+
+Medicare Services is a responsive and interactive healthcare website designed to offer users access to doctors, lab tests, medical services, and a virtual assistant chatbot. The platform emphasizes user experience, accessibility, and clear healthcare information delivery.
+
+🚀 Features
+Top Navigation Bar: Includes quick links to Account, Doctor, Services, Resources (with dropdown), and Contact pages.
+
+Responsive Banner: Displays a clean and welcoming message with a call-to-action button.
+
+Expandable Information Sections: Includes "Read More" and toggle features for text-heavy content areas.
+
+Doctor Selection Card: Allows users to select doctors from a dropdown and view detailed information dynamically.
+
+Lab Test Section: Displays multiple types of healthcare tests with informative descriptions and images.
+
+Footer Section: Provides contact information, social media links, legal policy links, and about information.
+
+🧾 Technologies Used
+HTML5 – Structure of the webpage.
+
+CSS3 – Styling for layout and design (linked via main.css).
+
+Font Awesome – Icons for UI enhancement.
+
+JavaScript – Adds interactivity like dropdowns, toggles.
+
+📌 Future Enhancements
+Backend integration for real appointment booking.
+
+Real chatbot using AI API (e.g., Dialogflow, OpenAI).
+
+User authentication for secure patient profiles.
+
+🙌 Contributors
+
+Aditya Sharma 
+Muskaan
+Bhawna
+Shrishty Kheterpal
