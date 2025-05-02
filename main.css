@@ -16,6 +16,42 @@ html {
 html {
   scroll-behavior: smooth;
 }
+/*dots for sign up */
+.signdot {
+  position: relative; 
+  display: inline-block; 
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+.signdot i {
+  margin-top: 1rem;
+  cursor: pointer; 
+}
+.menu {
+  display: none;
+  position: absolute;
+  top: 2.5rem; 
+  left: 1rem;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+  border-radius: 2px;
+  z-index: 1000;
+}
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+}
+.menu ul li {
+  padding: 2px 4px;
+  margin-right: 1rem;
+  margin-bottom: -1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.menu ul li:hover {
+  background-color: #f0f0f0;
+}
 
 /*Top Bar*/
 .Topbar{
@@ -76,6 +112,8 @@ html {
   transform: translateY(-50%);
   margin-left: 0.5rem;
 }
+
+
 
 .i{
   cursor: pointer;

@@ -1,3 +1,15 @@
+//signupdot
+document.querySelector(".signdot i").addEventListener("click", function (event) {
+  event.stopPropagation(); 
+  const menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "block") ? "none" : "block";
+});
+
+document.addEventListener("click", function () {
+  const menu = document.getElementById("menu");
+  menu.style.display = "none";
+});
+
 //Dropdwon
 function toggleDropdown() {
     const menu = document.getElementById('dropdowncontent');
@@ -139,29 +151,5 @@ function toggleReadMore() {
 }
 
 //search bar
-document.getElementById("search-icon").addEventListener("click", function () {
-  const query = document.getElementById("search-input").value.trim().toLowerCase();
-  const services = document.querySelectorAll(".test-item");
-
-  let found = false;
-
-  services.forEach(service => {
-      const title = service.querySelector("h3")?.textContent.toLowerCase() || "";
-
-      // Reset all borders
-      service.style.border = "none";
-
-      if (title.includes(query) && query !== "") {
-          // Highlight and scroll to the matching service
-          service.style.border = "3px solid #007bff";
-          service.scrollIntoView({ behavior: "smooth", block: "center" });
-          found = true;
-      }
-  });
-
-  if (!found && query !== "") {
-      alert("No matching service found.");
-  }
-});
 
 // chatbot.js
