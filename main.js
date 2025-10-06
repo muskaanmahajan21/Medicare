@@ -146,5 +146,5 @@ function toggleReadMore() {
     }
 }
 
-//search bar
+
 
