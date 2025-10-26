@@ -1,155 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Account - Personal Information & Claims</title>
-  <link rel="stylesheet" href="account.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountant Management System</title>
+
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
+        .container { display: flex; gap: 30px; margin-top: 20px; }
+        .form-section { background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); flex: 1; }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 10px; margin-top: 0; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input[type="text"], input[type="number"], select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; margin-top: 20px; transition: background-color 0.3s; }
+        button:hover { background-color: #0056b3; }
+        .button-group { display: flex; gap: 10px; margin-top: 20px; }
+        
+        #status-display { 
+            padding: 10px; 
+            border: 1px solid #333; 
+            margin-top: 15px; 
+            border-radius: 4px; 
+            text-align: center; 
+            font-weight: bold; 
+            background-color: #f8d7da; 
+            color: #721c24;
+            transition: all 0.3s ease; 
+        }
+
+        .search-area { background-color: #e9ecef; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 10px; }
+        .search-area input { flex: 3; }
+        .search-area button { flex: 1; margin-top: 0; }
+        .alert-message { color: red; margin-top: 10px; font-weight: bold; }
+        .success-message { color: green; margin-top: 10px; font-weight: bold; }
+    </style>
 </head>
 <body>
-  <div class="account-container">
-    <div class="section-title">Personal Information</div>
 
-    <div class="info-row">
-      <div class="label">Full Name:</div>
-      <div class="value" id="nameDisplay"></div>
-      <div class="input-field" id="nameInput"><input type="text" ></div>
+    
+    <h1>Accountant Dashboard</h1>
+
+    <div class="search-area">
+        <input type="text" id="search-input" placeholder="Search User by Name, ID, or Phone Number...">
+        <button onclick="searchUser()">Search Detail</button>
+    </div>
+    <div id="search-feedback" class="alert-message"></div>
+
+    <div class="container">
+
+        <div class="form-section" id="user-details-section">
+            <h2>User Details</h2>
+            <form id="user-form">
+                <label for="user-id">User ID:</label>
+                <input type="text" id="user-id" name="user-id" value="" readonly>
+
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name"> 
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="1" required>
+
+                <label for="phone-no">Phone No.:</label>
+                <input type="text" id="phone-no" name="phone-no" required 
+                       maxlength="10" 
+                       oninput="this.value=this.value.replace(/[^0-9]/g,'').substring(0, 10)">
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location">
+
+                <div class="button-group" id="user-action-buttons">
+                    <button type="submit" id="save-detail-btn" style="background-color: green;">Save Detail</button>
+                    <button type="button" id="edit-detail-btn" style="display:none; background-color: orange;" onclick="enableUserEditing()">Edit Detail</button>
+                    <button type="button" id="cancel-edit-btn" style="display:none; background-color: gray;" onclick="resetUserForm()">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-section" id="bill-details-section">
+            <h2>Bill Detail</h2>
+            <form id="bill-form">
+                <label for="bill-id">Bill ID:</label>
+                <input type="text" id="bill-id" name="bill-id" value="" readonly>
+
+                <label for="bill-date">Date:</label>
+                <input type="text" id="bill-date" name="bill-date" value="" readonly>
+
+                <label for="bill-time">Time:</label>
+                <input type="text" id="bill-time" name="bill-time" value="" readonly>
+                
+                <label for="bill-user-id">User ID:</label>
+                <input type="text" id="bill-user-id" name="bill-user-id" placeholder="Linked to User ID" required readonly>
+                
+                <label for="bill-phone-no">Phone No. (User):</label>
+                <input type="text" id="bill-phone-no" name="bill-phone-no" placeholder="Linked to User Details" required readonly>
+
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" min="0.01" step="0.01" required oninput="updatePendingAmount()">
+                
+                <label for="payment-mode">Payment Mode:</label>
+                <select id="payment-mode" name="payment-mode" required>
+                    <option value="" disabled selected>Select Mode</option>
+                    <option value="cash">Cash</option>
+                    <option value="online">Online</option>
+                </select>
+
+                <div class="button-group">
+                    <button type="button" id="mark-paid-btn" style="background-color: green;" onclick="setPaymentStatus('Paid')">Mark Paid</button>
+                    <button type="button" id="mark-pending-btn" style="background-color: red;" onclick="setPaymentStatus('Pending')">Mark Pending</button>
+                </div>
+
+                <label for="payment-status">Payment Status:</label>
+                <div id="status-display" name="payment-status" data-status="Pending">Pending ⏳ (₹ 0.00)</div>
+                <input type="hidden" id="hidden-status-field" value="Pending">
+                
+                <div class="button-group">
+                    <button type="submit" id="save-bill-btn" style="background-color: blue;">Save Bill</button>
+                    <button type="button" id="download-bill-btn" style="background-color: darkgreen;">Download Bill (Simulated)</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="bill-history-section" style="margin-top: 30px; background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <h2>User Bill History & Summary</h2>
+        <div id="bill-summary">
+            </div>
+        <table id="bill-table" style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <thead>
+                <tr style="background-color: #007bff; color: white;">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Bill ID</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Date</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Amount</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Mode</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Status</th>
+                </tr>
+            </thead>
+            <tbody id="bill-list-body">
+                <tr><td colspan="5" style="text-align: center; padding: 10px;">No bills loaded. Search a user to view history.</td></tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="info-row">
-      <div class="label">Date of Birth:</div>
-      <div class="value" id="dobDisplay"></div>
-      <div class="input-field" id="dobInput"><input type="date"></div>
-    </div>
+    <script>
+      
+        const USER_STORAGE_KEY = 'accountantUserDB';
+        const BILL_STORAGE_KEY = 'accountantBillDB'; 
+        
 
-    <div class="info-row">
-      <div class="label">Medicare ID:</div>
-      <div class="value" id="idDisplay"></div>
-      <div class="input-field" id="idInput"><input type="text"></div>
-    </div>
+        function getUserDatabase() {
+            const storedData = localStorage.getItem(USER_STORAGE_KEY);
+            return storedData ? JSON.parse(storedData) : [];
+        }
 
-    <div class="info-row">
-      <div class="label">Phone:</div>
-      <div class="value" id="phoneDisplay"></div>
-      <div class="input-field" id="phoneInput"><input type="tel"></div>
-    </div>
+        function saveUserDatabase(db) {
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(db));
+        }
 
-    <div class="info-row">
-      <div class="label">Email:</div>
-      <div class="value" id="emailDisplay"></div>
-      <div class="input-field" id="emailInput"><input type="email"></div>
-    </div>
+        function getBillDatabase() {
+            const storedData = localStorage.getItem(BILL_STORAGE_KEY);
+            return storedData ? JSON.parse(storedData) : [];
+        }
 
-    <div class="info-row">
-      <div class="label">Address:</div>
-      <div class="value" id="addressDisplay"></div>
-      <div class="input-field" id="addressInput"><input type="text"></div>
-    </div>
+        function saveBillDatabase(db) {
+            localStorage.setItem(BILL_STORAGE_KEY, JSON.stringify(db));
+        }
 
-    <div class="button-row">
-      <button id="editBtn">Edit</button>
-      <button id="saveBtn" style="display:none;">Save</button>
-      <button id="cancelBtn" class="cancel" style="display:none;">Cancel</button>
-    </div>
+        function generateNextUserID() {
+            const userDatabase = getUserDatabase();
+            if (userDatabase.length > 0) {
+                const lastIdNumber = userDatabase.reduce((max, user) => {
+                    const num = parseInt(user.id.substring(1));
+                    return num > max ? num : max;
+                }, 0);
+                const nextIdNumber = lastIdNumber + 1;
+                return 'U' + nextIdNumber.toString().padStart(3, '0');
+            }
+            return 'U101'; 
+        }
 
-    <!-- Payment Information Section -->
-    <div class="section-title">Claims & Payment Information</div>
+        function generateNextBillID() {
+            const billDatabase = getBillDatabase();
+            if (billDatabase.length > 0) {
+                const lastIdNumber = billDatabase.reduce((max, bill) => {
+                    const num = parseInt(bill.billId.substring(1));
+                    return num > max ? num : max;
+                }, 0);
+                const nextIdNumber = lastIdNumber + 1;
+                return 'B' + nextIdNumber.toString().padStart(3, '0');
+            }
+            return 'B001';
+        }
 
-    <div class="claims-container">
-      <div class="claim-item">
-        <div class="claim-id">Claim ID: 12345</div>
-        <div class="claim-date">Date: 2024-01-15</div>
-        <div class="claim-amount">Amount: $350.00</div>
-        <button class="view-details">View Details</button>
-      </div>
+    
+        function findUser(query) {
+            const userDatabase = getUserDatabase();
+            const normalizedQuery = query.toLowerCase().trim();
+            
+            return userDatabase.find(user => 
+                user.firstName.toLowerCase() === normalizedQuery ||
+                user.id.toLowerCase() === normalizedQuery ||
+                user.phone === normalizedQuery
+            );
+        }
 
-      <div class="claim-item">
-        <div class="claim-id">Claim ID: 12346</div>
-        <div class="claim-date">Date: 2024-02-10</div>
-        <div class="claim-amount">Amount: $450.00</div>
-        <button class="view-details">View Details</button>
-      </div>
+        function searchUser() {
+            const searchInput = document.getElementById('search-input').value;
+            const feedbackElement = document.getElementById('search-feedback');
+            
+            if (!searchInput) {
+                feedbackElement.textContent = 'Please enter a name, ID, or phone number to search.';
+                feedbackElement.className = 'alert-message';
+                document.getElementById('bill-summary').innerHTML = '';
+                document.getElementById('bill-list-body').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 10px;">No bills loaded. Search a user to view history.</td></tr>';
+                return;
+            }
 
-      <div class="claim-item">
-        <div class="claim-id">Claim ID: 12347</div>
-        <div class="claim-date">Date: 2024-03-05</div>
-        <div class="claim-amount">Amount: $300.00</div>
-        <button class="view-details">View Details</button>
-      </div>
-    </div>
+            const user = findUser(searchInput);
 
-    <div class="payment-history">
-      <h3>Payment History</h3>
-      <div class="payment-item">
-        <div class="payment-date">Date: 2024-01-20</div>
-        <div class="payment-amount">Amount Paid: $350.00</div>
-      </div>
+            if (user) {
+                
+                document.getElementById('user-id').value = user.id;
+                document.getElementById('first-name').value = user.firstName;
+                document.getElementById('last-name').value = user.lastName;
+                document.getElementById('age').value = user.age;
+                document.getElementById('phone-no').value = user.phone;
+                document.getElementById('location').value = user.location;
+                
+                
+                resetBillForm();
+                document.getElementById('bill-user-id').value = user.id; 
+                document.getElementById('bill-phone-no').value = user.phone; 
+                
+                
+                displayUserBills(user.id);
+                
+                document.getElementById('save-detail-btn').style.display = 'none';
+                document.getElementById('edit-detail-btn').style.display = 'block';
+                document.getElementById('cancel-edit-btn').style.display = 'none';
 
-      <div class="payment-item">
-        <div class="payment-date">Date: 2024-02-15</div>
-        <div class="payment-amount">Amount Paid: $450.00</div>
-      </div>
+                toggleUserFieldsReadOnly(true);
+                
+                feedbackElement.textContent = `User '${user.firstName}' details loaded successfully! Bill history displayed below.`;
+                feedbackElement.className = 'success-message';
+            } else {
+                resetUserForm(); 
+                feedbackElement.textContent = `User detail not available for '${searchInput}'. Please enter as a new user.`;
+                feedbackElement.className = 'alert-message';
+                document.getElementById('bill-summary').innerHTML = '';
+                document.getElementById('bill-list-body').innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 10px;">No bills loaded. Search a user to view history.</td></tr>';
+            }
+        }
 
-      <div class="payment-item">
-        <div class="payment-date">Date: 2024-03-10</div>
-        <div class="payment-amount">Amount Paid: $300.00</div>
-      </div>
-    </div>
-  </div>
+        function toggleUserFieldsReadOnly(isReadOnly) {
+            const form = document.getElementById('user-form');
+            const inputs = form.querySelectorAll('input:not([id="user-id"])'); 
+            inputs.forEach(input => {
+                if (input.type === 'text' || input.type === 'number') {
+                     input.readOnly = isReadOnly;
+                }
+            });
+        }
 
-  
-  <script>
-    const fields = ["name", "dob", "id", "phone", "email", "address"];
+        function resetUserForm() {
+            document.getElementById('user-form').reset();
+            document.getElementById('user-id').value = generateNextUserID();
+            document.getElementById('search-feedback').textContent = '';
+            document.getElementById('save-detail-btn').textContent = 'Save Detail';
+            document.getElementById('save-detail-btn').style.display = 'block';
+            document.getElementById('edit-detail-btn').style.display = 'none';
+            document.getElementById('cancel-edit-btn').style.display = 'none';
+            toggleUserFieldsReadOnly(false); 
+            
+            document.getElementById('bill-user-id').value = '';
+            document.getElementById('bill-phone-no').value = ''; 
+            resetBillForm();
+        }
 
-    const editBtn = document.getElementById("editBtn");
-    const saveBtn = document.getElementById("saveBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
+        function saveUserDetail(event) {
+            event.preventDefault(); 
+            
+            const userId = document.getElementById('user-id').value;
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const age = document.getElementById('age').value;
+            const phone = document.getElementById('phone-no').value;
+            const location = document.getElementById('location').value;
 
-    editBtn.onclick = () => {
-      fields.forEach(field => {
-        document.getElementById(field + "Display").style.display = "none";
-        document.getElementById(field + "Input").style.display = "block";
-      });
-      editBtn.style.display = "none";
-      saveBtn.style.display = "inline-block";
-      cancelBtn.style.display = "inline-block";
-    };
+            if (!firstName || !phone || !age) {
+                alert('Please fill in required fields (First Name, Age, Phone No.).');
+                return;
+            }
 
-    saveBtn.onclick = () => {
-      fields.forEach(field => {
-        const input = document.querySelector(`#${field}Input input`);
-        document.getElementById(field + "Display").innerText = input.value;
-        document.getElementById(field + "Display").style.display = "block";
-        document.getElementById(field + "Input").style.display = "none";
-      });
-      editBtn.style.display = "inline-block";
-      saveBtn.style.display = "none";
-      cancelBtn.style.display = "none";
-    };
+            const newUserDetail = { 
+                id: userId, 
+                firstName, 
+                lastName, 
+                age, 
+                phone, 
+                location 
+            };
+            let userDatabase = getUserDatabase();
+            let isUpdate = false;
 
-    cancelBtn.onclick = () => {
-      fields.forEach(field => {
-        const displayValue = document.getElementById(field + "Display").innerText;
-        const input = document.querySelector(`#${field}Input input`);
-        input.value = field === "dob" ? convertDate(displayValue) : displayValue;
-        document.getElementById(field + "Display").style.display = "block";
-        document.getElementById(field + "Input").style.display = "none";
-      });
-      editBtn.style.display = "inline-block";
-      saveBtn.style.display = "none";
-      cancelBtn.style.display = "none";
-    };
+            const existingIndex = userDatabase.findIndex(user => user.id === userId);
 
-    function convertDate(displayDate) {
-      const parts = displayDate.split('/');
-      return `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
-    }
+            if (existingIndex !== -1) {
+                userDatabase[existingIndex] = newUserDetail;
+                isUpdate = true;
+            } else {
+                userDatabase.push(newUserDetail);
+            }
 
-    const viewDetailsButtons = document.querySelectorAll('.view-details');
-    viewDetailsButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        alert('Claim details functionality to be implemented.');
-      });
-    });
-  </script>
+            saveUserDatabase(userDatabase);
+
+            alert(`User ${newUserDetail.firstName} details ${isUpdate ? 'updated' : 'saved'} successfully!`);
+            
+            document.getElementById('save-detail-btn').style.display = 'none';
+            document.getElementById('edit-detail-btn').style.display = 'block';
+            document.getElementById('cancel-edit-btn').style.display = 'none';
+            toggleUserFieldsReadOnly(true);
+            document.getElementById('search-feedback').textContent = '';
+            
+            if (!isUpdate) {
+                 document.getElementById('bill-user-id').value = userId;
+                 document.getElementById('bill-phone-no').value = phone;
+                 resetBillForm();
+            }
+        }
+
+        function enableUserEditing() {
+            toggleUserFieldsReadOnly(false);
+            document.getElementById('edit-detail-btn').style.display = 'none';
+            document.getElementById('cancel-edit-btn').style.display = 'block';
+            document.getElementById('save-detail-btn').style.display = 'block';
+            document.getElementById('save-detail-btn').textContent = 'Save Changes';
+            document.getElementById('search-feedback').textContent = 'Editing enabled. Save changes when done.';
+            document.getElementById('search-feedback').className = 'alert-message';
+        }
+
+        function resetBillForm() {
+            document.getElementById('bill-form').reset();
+            
+            document.getElementById('bill-id').value = generateNextBillID();
+            
+            
+            const now = new Date();
+            document.getElementById('bill-date').value = now.toLocaleDateString();
+            document.getElementById('bill-time').value = now.toLocaleTimeString();
+
+            setPaymentStatus('Pending');
+        }
+
+        
+        function updatePendingAmount() {
+            const currentStatus = document.getElementById('hidden-status-field').value;
+            setPaymentStatus(currentStatus);
+        }
+
+        function setPaymentStatus(status) {
+            const statusDisplay = document.getElementById('status-display');
+            
+            const amountInput = document.getElementById('amount').value || 0.00;
+            const currentAmount = parseFloat(amountInput).toFixed(2);
+            
+            document.getElementById('hidden-status-field').value = status;
+            statusDisplay.setAttribute('data-status', status);
+
+            if (status === 'Paid') {
+                statusDisplay.textContent = 'Paid ✅';
+                statusDisplay.style.backgroundColor = '#d4edda'; 
+                statusDisplay.style.color = '#155724'; 
+            } else {
+                
+                statusDisplay.textContent = `Pending ⏳ (₹ ${currentAmount})`;
+                statusDisplay.style.backgroundColor = '#f8d7da'; 
+                statusDisplay.style.color = '#721c24'; 
+            }
+        }
+
+        function saveBillDetail(event) {
+            event.preventDefault();
+
+            const billId = document.getElementById('bill-id').value;
+            const userId = document.getElementById('bill-user-id').value;
+            const phone = document.getElementById('bill-phone-no').value;
+            const amount = document.getElementById('amount').value;
+            const paymentMode = document.getElementById('payment-mode').value;
+            const status = document.getElementById('hidden-status-field').value;
+
+            if (!userId || !phone) {
+                alert('Please search or save a user first to generate a bill.');
+                return;
+            }
+            if (!amount || !paymentMode) {
+                alert('Please enter Amount and select a Payment Mode.');
+                return;
+            }
+
+            const newBill = {
+                billId: billId,
+                userId: userId, 
+                date: document.getElementById('bill-date').value,
+                time: document.getElementById('bill-time').value,
+                phone: phone,
+                amount: parseFloat(amount).toFixed(2),
+                paymentMode: paymentMode,
+                status: status
+            };
+
+            let billDatabase = getBillDatabase();
+            billDatabase.push(newBill);
+            saveBillDatabase(billDatabase);
+
+            alert(`Bill ${billId} for User ${userId} saved successfully! Status: ${status}.`);
+            
+            const currentUserId = document.getElementById('bill-user-id').value;
+            const currentPhone = document.getElementById('bill-phone-no').value;
+
+            resetBillForm();
+            
+            document.getElementById('bill-user-id').value = currentUserId;
+            document.getElementById('bill-phone-no').value = currentPhone; 
+            
+        
+            displayUserBills(currentUserId);
+        }
+        
+        
+        function displayUserBills(userId) {
+            const billDatabase = getBillDatabase();
+            const userBills = billDatabase.filter(bill => bill.userId === userId);
+            const billListBody = document.getElementById('bill-list-body');
+            const billSummaryDiv = document.getElementById('bill-summary');
+            
+            let totalPaid = 0;
+            let totalPending = 0;
+            let tableRows = '';
+
+            if (userBills.length === 0) {
+                billSummaryDiv.innerHTML = '<p>No bills found for this user.</p>';
+                billListBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 10px;">No bills on record.</td></tr>';
+                return;
+            }
+
+            userBills.forEach(bill => {
+                const amount = parseFloat(bill.amount);
+                
+                if (bill.status === 'Paid') {
+                    totalPaid += amount;
+                    bill.displayStatus = 'Paid ✅';
+                    bill.rowColor = 'background-color: #e6ffe6;'; 
+                } else {
+                    totalPending += amount;
+                    bill.displayStatus = `Pending ⏳`;
+                    bill.rowColor = 'background-color: #ffcccc;'; 
+                }
+
+                tableRows += `
+                    <tr style="${bill.rowColor}">
+                        <td style="padding: 10px; border: 1px solid #ddd;">${bill.billId}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${bill.date}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">₹ ${amount.toFixed(2)}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${bill.paymentMode}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${bill.displayStatus}</td>
+                    </tr>
+                `;
+            });
+
+            
+            billSummaryDiv.innerHTML = `
+                <p style="font-size: 1.1em; font-weight: bold;">
+                    Total Bills: ${userBills.length} | 
+                    Total Paid: <span style="color: green;">₹ ${totalPaid.toFixed(2)}</span> | 
+                    Total Pending: <span style="color: red;">₹ ${totalPending.toFixed(2)}</span>
+                </p>
+            `;
+
+            billListBody.innerHTML = tableRows;
+        }
+        window.onload = function() {
+            document.getElementById('user-form').addEventListener('submit', saveUserDetail);
+            document.getElementById('bill-form').addEventListener('submit', saveBillDetail);
+
+            resetUserForm(); 
+            resetBillForm();
+        };
+        
+    </script>
 </body>
 </html>
